@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  elasticsearch:
+    image: elasticsearch:6.8.18
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xmsm -Xmx512m"
+    restart: always
+  kibana:
+    image: kibana:6.8.18
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - "elasticsearch"
+    restart: always
+  jenkins:
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+    image: jenkins:latest
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "50000:50000"
+    command: sh -c './wait-for http://elasticsearch:9200 -- ./run.sh'
+    depends_on:
+      - "elasticsearch"
+      - "kibana"
+    restart: always
