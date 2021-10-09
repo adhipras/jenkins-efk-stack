@@ -9,7 +9,7 @@ services:
       - "9300:9300"
     environment:
       - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xmsm -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     restart: always
   kibana:
     image: kibana:6.8.18
