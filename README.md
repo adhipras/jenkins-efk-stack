@@ -1,4 +1,4 @@
-# Jenkins + Elasticsearch, Filebeat, and Kibana Stacks
+# Jenkins + Elasticsearch, Filebeat, and Kibana Stack
 
 A [Docker Compose](https://docs.docker.com/compose/) file to launch several [Docker](https://www.docker.com/) images that will make a [Jenkins](https://www.jenkins.io/) with additional plugin installed and integrated with [Elasticsearch](https://www.elastic.co/elasticsearch) to stream Jenkins log then display it in [Kibana](https://www.elastic.co/kibana).
 
