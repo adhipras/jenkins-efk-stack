@@ -20,8 +20,8 @@ RUN /usr/local/bin/install-plugins.sh saferestart kubernetes
 USER root
 
 # Download and install Filebeat
-RUN curl -L https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.8.18-amd64.deb -o /tmp/filebeat-6.8.18-amd64.deb
-RUN dpkg -i /tmp/filebeat-6.8.18-amd64.deb
+RUN curl -L https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.8.18-amd64.deb -o /tmp/filebeat-6.8.18-amd64.deb \
+    && dpkg -i /tmp/filebeat-6.8.18-amd64.deb
 
 # Copy Filebeat configuration file
 COPY filebeat.yml /etc/filebeat/filebeat.yml
@@ -36,8 +36,7 @@ RUN curl -L https://raw.githubusercontent.com/eficode/wait-for/master/wait-for -
 COPY run.sh /
 
 # Make scripts executable
-RUN chmod +x /run.sh
-RUN chmod +x /wait-for
+RUN chmod +x /run.sh && chmod +x /wait-for
 
 # Expose the ports
 EXPOSE 8080/tcp 8443/tcp 50000/tcp
