@@ -29,7 +29,7 @@ services:
       - "8080:8080"
       - "8443:8443"
       - "50000:50000"
-    command: sh -c './wait-for http://elasticsearch:9200 -- ./run.sh'
+    command: sh -c './wait-for elasticsearch:9200 -- ./run.sh'
     depends_on:
       - "elasticsearch"
       - "kibana"
